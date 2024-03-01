@@ -1,0 +1,5 @@
+pdfplumber
+streamlit
+langchain-google-genai
+langchain
+langchain-prompts
