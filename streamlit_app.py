@@ -6,7 +6,7 @@ from langchain import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 
 # Set page configuration
-st.set_page_config(page_title="ResuMagic", page_icon="🌟", layout="wide")
+st.set_page_config(page_title="ResuMAGIC", page_icon="🌟", layout="wide")
 
 # Initialize Gemini LLM with Google API key
 google_api_key = "AIzaSyDX7iqE8XTN8npHp9jKZST8HMfZS4ncNpg"  # Replace with your Google API key
@@ -60,7 +60,7 @@ career_trajectory_chain = LLMChain(llm=llm, prompt=career_trajectory_prompt, ver
 parent_chain = SequentialChain(chains=[chain1, chain2, work_chain, projects_chain, skills_chain, career_trajectory_chain], input_variables=['text'], output_variables=['descript_two', 'work_details', 'projects_details', 'skills_details', 'career_trajectory'], verbose=True)
 
 # Streamlit UI
-st.title('ResuMagic AI 🌟 ')
+st.title('ResuMAGIC AI 🌟 ')
 
 # File uploader for resume PDF
 uploaded_file = st.file_uploader("Upload Resume PDF", type=['pdf','docx'])
