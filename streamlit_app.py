@@ -8,7 +8,7 @@ from langchain_google_genai import GoogleGenerativeAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain, SequentialChain
 from langchain import globals as lc_globals
-from concurrent.futures import ThreadPoolExecutor
+# from concurrent.futures import ThreadPoolExecutor
 
 # Set verbose mode for langchain
 lc_globals.set_verbose(True)
@@ -84,11 +84,13 @@ uploaded_file = st.file_uploader("Upload Resume PDF, DOCX, HTML, or JPEG", type=
 
 if uploaded_file is not None:
     with st.spinner("Analyzing..."):
-        # Extract text from uploaded file
+        # Extract text from uploaded files
         extracted_text = extract_text_from_file(uploaded_file)
         if extracted_text:
             try:
-                result = parent_chain({'text': extracted_text})
+                # With this line:
+                result = parent_chain.invoke({'text': extracted_text})
+               
                 standardized_job_titles = [map_job_description_to_title(job_desc) for job_desc in result.get('descript_two', []) if job_desc]
                 
                 st.subheader("Check Out the Outcomes :")
